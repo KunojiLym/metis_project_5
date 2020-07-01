@@ -1,6 +1,6 @@
 import flask
 from flask import request
-from poetry_flask_api import generate_poem, to_html
+from poetry_flask_api import generate_poem_api, to_html
 
 # Initialize the app
 
@@ -20,9 +20,7 @@ def generate():
     # request.args contains all the arguments passed by our form
     # comes built in with flask. It is a dictionary of the form
     # "form name (as set in template)" (key): "string in the textbox" (value)
-    poem_list = generate_poem(temperature=request.json['temperature'], 
-                              start_word=request.json['start_word'], 
-                              max_words=request.json['max_words'])
+    poem_list = generate_poem_api(request.args)
     return to_html(poem_list)
 
 

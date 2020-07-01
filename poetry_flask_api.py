@@ -74,13 +74,34 @@ def generate_dictionary(corpus):
 def load_poem_embeddings(embed_file):
 
     if os.path.isfile(embed_file):
-        loaded = np.load(embed_file)
+        loaded = np.load(embed_file, allow_pickle=True)
         
         return {'X': loaded['X'], 
                 'Y': loaded['Y'], 
                 'seq_length': len(loaded['X'][0])}
     else:
         return None
+
+def generate_poem_api(args_dictionary):
+    
+    try:
+        start_word = args_dictionary['start_word']
+    except:
+        start_word = ''
+
+    try:
+        temperature = float(args_dictionary['temperature'])
+    except:
+        temperature = 0.5
+    
+    try:
+        max_words = int(args_dictionary['max_words'])
+    except:
+        max_words = 200
+
+    return generate_poem(start_word = start_word,
+                         temperature = temperature,
+                         max_words = max_words)
 
 def generate_poem(start_word='', temperature=0.5, max_words=200):
 
@@ -148,7 +169,7 @@ glove_model = load_embeddings(glove_file, tmp_file)
 print('loading sequences...')
 poem_embeds = load_poem_embeddings('./data/haiku_train_wordembed.npz')
 word_poemX = poem_embeds['X']
-seq_len = poem_embeds['seq_len']
+seq_len = poem_embeds['seq_length']
 
 print('loading model...')
 model = load_model('./weights/word_embedding/wordembed-weights-70-2.5563.hdf5')
