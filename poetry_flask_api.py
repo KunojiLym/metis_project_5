@@ -105,6 +105,10 @@ def generate_poem_api(args_dictionary):
 
 def generate_poem(start_word='', temperature=0.5, max_words=200):
 
+    print('loading model...')
+    model = load_model('./weights/word_embedding/wordembed-weights-70-2.5563.hdf5')
+    print('done loading')
+
     if start_word == '':
         start = np.random.randint(0, n_vocab_words)
     else:
@@ -170,9 +174,6 @@ print('loading sequences...')
 poem_embeds = load_poem_embeddings('./data/haiku_train_wordembed.npz')
 word_poemX = poem_embeds['X']
 seq_len = poem_embeds['seq_length']
-
-print('loading model...')
-model = load_model('./weights/word_embedding/wordembed-weights-70-2.5563.hdf5')
 
 poem_html = ''
 print('done loading')
