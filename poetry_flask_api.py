@@ -78,7 +78,7 @@ def load_poem_embeddings(embed_file):
         
         return {'X': loaded['X'], 
                 'Y': loaded['Y'], 
-                'seq_length': len(loaded['X'][0])}
+                'seq_length': len(loaded['X'][0][0])}
     else:
         return None
 
