@@ -28,3 +28,8 @@ weights/word_embedding/wordembed-weights-80-2.5103.hdf5
 weights/word_embedding/wordembed-weights-85-2.4883.hdf5
 weights/word_embedding/wordembed-weights-90-2.4694.hdf5
 weights/word_embedding/wordembed-weights-95-2.4506.hdf5
+presentation/~$Generating Poetry.pptx
+*.pyc
+weights/word_embedding/wordembed-weights-19-3.2757.hdf5
+weights/word_embedding/wordembed-weights-30-2.9529.hdf5
+weights/word_embedding/wordembed-weights-70-2.5563.hdf5
