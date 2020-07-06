@@ -3,56 +3,60 @@
 
 <head>
   <title>Test app for generating poem</title>
-  <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.3/jquery.min.js"></script>
+  <script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.js"></script>
+  <script>
+
+    function generate_poem() {
+        $("#poem_body").html("Generating poem...");
+
+        params = {temperature: $("#temperature").val(), 
+                  start_word: $("#start_word").val()};
+
+        $.ajax({
+            url: "http://localhost:5000/generate?temperature=" + $("#temperature").val() + "&start_word=" + $("#start_word").val(),
+            //method: "POST",
+            //data: params,
+            success: function(data){
+              $("#poem_body").html(data);
+            },
+            error: function() {
+              $("#poem_body").html('error')
+            }
+        });
+        
+    }
+  </script>
 </head>
 
 <body>
 
-  <div style="width: 50%; float: left;">
-    <div style="width: 50%; float: left;">
+  <div>
+    
       <form id="poem_params">
-        <input type="text" name="temperature" value=0.5>
-        <label for="temperature">Creative temperature (must be above 0; recommended 0.1 to 1.2)</label>
-        <br>
+        <p>
+          <input type="text" name="temperature" value=0.5 id="temperature">
+          <br>
+          <label for="temperature">Creative temperature (must be above 0; recommended 0.1 to 1.2)</label>
+        </p>
         
-        <input type="text" name="start_word" value=''>
-        <label for="start_word">Starting word (blank for random)</label>
-        <br>
+        <p>
+          <input type="text" name="start_word" value="" id="start_word">
+          <br>
+          <label for="start_word">Starting word (blank for random)</label>
+        </p>
         
         <a href="#" onclick="generate_poem();"> Generate Poem </a>
-      </form>     
-    </div>
-    <div style="width: 50%; float: right;">
-        <table style="width:100%">
-            {% for f in feature_names %}
-        <tr>
-          <td>
-            {{ f }}
-          </td>
-          <td>
-            {{x_input[loop.index0]}}
-          </td>
-        </tr>
-      {% endfor %}
-          </table>
-    </div>
-  <div id="poem_body" style="width: 50%; float: right;">
+      </form> 
+    </div>    
+    
+  <div id="poem_body" style="
+  outline: thick solid rgb(0, 81, 255);
+  margin: 20px;
+  padding: 20px;
+  width: fit-content;
+">
 
   </div>
-
-<script>
-
-  function generate_poem() {
-      $.ajax({
-          url: "http://localhost:5000/generate",
-          type: "POST",
-          data: $('poem_params').serialize(),
-          success: function$('#poem_body').load(data)
-      })
-      
-  }
-</script>
-
 
 </body>
 
