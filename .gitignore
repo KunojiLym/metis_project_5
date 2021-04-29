@@ -33,3 +33,6 @@ presentation/~$Generating Poetry.pptx
 weights/word_embedding/wordembed-weights-19-3.2757.hdf5
 weights/word_embedding/wordembed-weights-30-2.9529.hdf5
 weights/word_embedding/wordembed-weights-70-2.5563.hdf5
+weights/elmo_2x2048_256_2048cnn_1xhighway_weights.hdf5
+weights/elmo_2x1024_128_2048cnn_1xhighway_weights.hdf5
+weights/elmo_2x4096_512_2048cnn_2xhighway_5.5B_weights.hdf5
